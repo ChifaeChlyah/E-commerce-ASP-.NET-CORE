@@ -101,18 +101,25 @@ namespace Projet_Exam_ASP.NetCore.Areas.Identity.Pages.Account
             [Display(Name = "Image de profile")]
             public IFormFile ImageProfile { get; set; }
             [Display(Name = "Nom de la boutique")]
+            [Required]
             public string NomBoutique { get; set; }
             [Display(Name = "Description de la boutique")]
+            [Required]
             public string DescriptionBoutique { get; set; }
             [Display(Name = "Ville de la boutique")]
+            [Required]
             public string VilleBoutique { get; set; }
             [Display(Name = "Adresse de la boutique")]
+            [Required]
             public string AdresseBoutique { get; set; }
             [Display(Name = "Site de la boutique")]
+            [Required]
             public string SiteBoutique { get; set; }
             [Display(Name = "Telephone de la boutique")]
+            [Required]
             public string TelephoneBoutique { get; set; }
             [Display(Name = "Image de la boutique")]
+
             public IFormFile ImageBoutique { get; set; }
         }
 

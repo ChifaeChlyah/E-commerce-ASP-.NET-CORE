@@ -14,16 +14,19 @@ namespace Projet_Exam_ASP.NetCore.Areas.Identity.Data
     public class AppUser : IdentityUser
     {
         [PersonalData]
+        [Required]
         [Column(TypeName="nvarchar(100)")]
         public String Nom { get; set; }
         [Column(TypeName="nvarchar(100)")]
         [PersonalData]
+        [Required]
         public String Prenom { get; set; }
         [Column(TypeName="nvarchar(100)")]
         [PersonalData]
+        [Required]
         public String Telephone { get; set; }
         [Column(TypeName="nvarchar(100)")]
-        [PersonalData]
+        [PersonalData][Required]
         public String Ville { get; set; }
         //[Column(TypeName="nvarchar(100)")]
         //[PersonalData]
@@ -40,7 +43,7 @@ namespace Projet_Exam_ASP.NetCore.Areas.Identity.Data
         public int? BoutiqueId { get; set; }
         [ForeignKey("BoutiqueId")]
         public Boutique? Boutique { get; set; }
-        [PersonalData]
+        [PersonalData][Required]
         public int ImageId { get; set; }
         [PersonalData]
         [ForeignKey("ImageId")]

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Projet_Exam_ASP.NetCore.Data;
 
 namespace Projet_Exam_ASP.NetCore.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220124222123_validateurs")]
+    partial class validateurs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,7 +192,6 @@ namespace Projet_Exam_ASP.NetCore.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Nom")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("NormalizedEmail")
@@ -211,14 +212,12 @@ namespace Projet_Exam_ASP.NetCore.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Prenom")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telephone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -229,7 +228,6 @@ namespace Projet_Exam_ASP.NetCore.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("Ville")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
