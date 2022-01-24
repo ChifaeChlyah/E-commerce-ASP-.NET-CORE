@@ -87,15 +87,24 @@ namespace Projet_Exam_ASP.NetCore.Controllers
             }
             
         }
-        [Authorize]
-        public async Task<IActionResult> MesOffres()
+
+        public async Task<IActionResult> TouteslesOffres(string id)
         {
-            List<Image> images = new List<Image>(); 
+            if (id == null)
+            {
+                return NotFound();
+            }
+            List<Image> images = new List<Image>();
             List<int> NbFavorisParOffre = new List<int>();
-            ClaimsPrincipal currentUser = this.User;
-            var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
-            CurrentUser = _context.Users.Find(currentUserID);
-            var offres=await _context.Offres.Where(o => o.AppUserId == CurrentUser.Id).OrderBy(o=>o.Date_Dépot).ToListAsync();
+            
+
+            List<bool> isFavoriList = new List<bool>();
+            var Propriétaire = _context.Users.Find(id);
+            if (Propriétaire == null)
+            {
+                return NotFound();
+            }
+            var offres=await _context.Offres.Where(o => o.AppUserId == id).OrderBy(o=>o.Date_Dépot).ToListAsync();
             foreach (Offre o in offres)
             {
                 if (_appDbContext.Images.Where(i => i.OffreId == o.Id).ToList().Count() != 0)
@@ -103,8 +112,21 @@ namespace Projet_Exam_ASP.NetCore.Controllers
                 else
                     images.Add((new Image { Nom = "Offre_Icone_Par_Defaut.png" }));
                 NbFavorisParOffre.Add( _appDbContext.Favoris.Where(f => f.Offre == o).Count());
+                if (User.Identity.IsAuthenticated)
+                {
+                    ClaimsPrincipal currentUser = this.User;
+                    var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+                    CurrentUser = _context.Users.Find(currentUserID);
+                    if (_context.Favoris.Where(f => f.AppUserId == CurrentUser.Id && o.Id == f.OffreId).Count() == 0)
+                        isFavoriList.Add(false);
+                    else
+                        isFavoriList.Add(true);
+                    ViewBag.isFavorisList = isFavoriList;
+                }
             }
-
+            ViewBag.Proprétaire = Propriétaire;
+            ViewBag.isBoutique = Propriétaire.BoutiqueId != null;
+            ViewBag.Boutique = _context.Boutiques.Find(Propriétaire.BoutiqueId);
             ViewBag.NbFavorisParOffre = NbFavorisParOffre;
             ViewBag.images = images;
             return View(offres);

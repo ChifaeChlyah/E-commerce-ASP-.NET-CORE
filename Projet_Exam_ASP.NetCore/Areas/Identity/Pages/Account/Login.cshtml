@@ -3,83 +3,162 @@
 
 @{
     ViewData["Title"] = "Log in";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
+@*----------------------------------------------------------------------------*@
+
+<style>
+
+    /*Profile Pic Start*/
+    #forgot-password{
+        color:black;
+        text-decoration:underline;
+    }
+        #forgot-password:hover {
+            color: #a34e4e;
+            text-decoration: underline;
+        }
+    .picture-container {
+        position: relative;
+        text-align: center;
+        padding-right: 20%;
+        padding-left: 20%;
+        padding-top: 30px;
+        padding-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+        .picture-container1 {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-right: 20%;
+            padding-left: 20%;
+            padding-top: 30px;
+            padding-bottom: 20px;
+        }
+
+        .picture {
+            width: 130px;
+            height: 130px;
+            background-color: #999999;
+            color: #FFFFFF;
+            border-radius: 50%;
+            @*margin: 0px auto;*@
+            overflow: hidden;
+            transition: all 0.2s;
+            -webkit-transition: all 0.2s;
+        }
+
+
+
+    .content.ct-wizard-green .picture:hover {
+        border-color: #05ae0e;
+    }
+
+    .content.ct-wizard-blue .picture:hover {
+        border-color: #3472f7;
+    }
+
+    .content.ct-wizard-orange .picture:hover {
+        border-color: #ff9500;
+    }
+
+    .content.ct-wizard-red .picture:hover {
+        border-color: #ff3b30;
+    }
+
+            .picture-src {
+        width: 100%;
+    }
+    /*Profile Pic End*/
+</style>
+<div class=" register1" style=" min-height: 619px; margin-top: 40px; background: #fdf1ec;">
+    <div class="myrow" style="min-height: 505px; box-shadow: 0px 14px 32px 0px rgb(0 0 0 / 58%); border-radius: 10px; ">
+        <div class="mycol3 register-left" style="background: #000000; border-radius: 10px; margin-top: 0px;">
+            <img src="~/Images/panier.png" />
+            <h3>Welcome</h3>
+            <p>Shop and Improve your Commerce Activities</p>
+            <div style="margin-top: 20%;">
+                <h5 style="margin-bottom: 10px;">Have an account?</h5>
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register </a>
+            </div>
+        </div>
+
+        <div class="mycol9 ">
             <form id="account" method="post">
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                </div>
-                <div class="form-group">
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
-                </div>
-            </form>
-        </section>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h4>Use another service to log in.</h4>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
+
+
+
+
+                <div class="tab-content" style="margin-top: 15px;">
+                    <div class="tab-pane active">
+                        <!---->
+
+                        <div class="picture-container1">
+                            <div class="picture" style="margin-top: 10px; margin-bottom: 20px;">
+                                <img src="~/Images/Profile_Icone_Par_Defaut.png" class="picture-src" id="wizardPicturePreview" title="" style="object-fit: cover; height:100%;">
+                            </div>
                         </div>
-                    </form>
-                }
-            }
-        </section>
+
+
+
+
+                        <div class="myrow register-form " style="margin-top: 50px;padding-top: 0%;padding-right: 10%;padding-bottom: 10%;padding-left: 10%;">
+
+                            <div class="mycol6">
+                                <div class="form-group">
+                                    <div class="form-group">
+
+                                        <input asp-for="Input.Email" class="form-control" placeholder="Enter your email" />
+                                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <input asp-for="Input.Password" class="form-control" placeholder="Enter your password" />
+                                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group" style="display: flex;justify-content: center;"><button type="submit" class="btnRegister" style="justify-content: space-evenly; align-items: center; margin-top: 15px; width:100%">Login</button> </div>
+                                </div>
+                                <div style="display: flex;justify-content: space-between;">
+                                    <div>
+                                        <label asp-for="Input.RememberMe">
+                                            <input asp-for="Input.RememberMe" />
+                                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                        </label>
+                                    </div>
+                                    <p>
+                                        <a id="forgot-password" asp-page="./ForgotPassword"><div style="color:black;margin-left:110px">Forgot password?</div></a>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+
     </div>
+    <br /><br /><br /><br />
 </div>
 
+
+
+<!-------------------------------------------->
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>

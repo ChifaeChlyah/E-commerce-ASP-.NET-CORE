@@ -37,12 +37,12 @@ namespace Projet_Exam_ASP
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            //services.AddDbContext<AppDbContext>(options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Projet_Exam_ASP.NetCore;Trusted_Connection=True;MultipleActiveResultSets=true"));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Projet_Exam_ASP.NetCore;Trusted_Connection=True;MultipleActiveResultSets=true"));
 
-            //services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = false)
-            //    .AddRoles<IdentityRole>()
-            //    .AddEntityFrameworkStores<AppDbContext>();
-            
+            services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>();
+
 
             //--------------------------------multilungue--------------------------------------------------------------
             services.AddSingleton<LanguageService>();
@@ -185,18 +185,18 @@ namespace Projet_Exam_ASP
 
         private async Task createIconesParDefautAsync(AppDbContext appDbContext)
         {
-            var iconeBoutique = appDbContext.Images.Where(p => p.Nom == "Boutique_Icone_Par_Defaut");
-            var iconeProfile = appDbContext.Images.Where(p => p.Nom == "Profile_Icone_Par_Defaut");
+            var iconeBoutique = appDbContext.Images.Where(p => p.Nom == "Boutique_Icone_Par_Defaut.png");
+            var iconeProfile = appDbContext.Images.Where(p => p.Nom == "Profile_Icone_Par_Defaut.png");
             if(iconeBoutique.Count()==0)
             {
-                Image img = new Image { Nom = "Boutique_Icone_Par_Defaut" };
+                Image img = new Image { Nom = "Boutique_Icone_Par_Defaut.png" };
                 appDbContext.Images.Add(img);
                 await appDbContext.SaveChangesAsync();
             }
 
             if (iconeProfile.Count() == 0)
             {
-                Image img = new Image { Nom = "Profile_Icone_Par_Defaut" };
+                Image img = new Image { Nom = "Profile_Icone_Par_Defaut.png" };
                 appDbContext.Images.Add(img);
                 await appDbContext.SaveChangesAsync();
             }

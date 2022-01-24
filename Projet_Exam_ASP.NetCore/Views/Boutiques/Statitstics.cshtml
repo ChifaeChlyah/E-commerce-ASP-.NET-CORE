@@ -1,0 +1,218 @@
+﻿<link href="~/css/dashboard.css" rel="stylesheet" />
+<script src="~/lib/bootstrap/dist/js/chart-pie-demo.js"></script>
+<script src="~/lib/bootstrap/dist/js/Chart.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/chart-area-demo.js"></script>
+@{
+    Layout = "_Layout1";
+}
+<style>
+    .text-xs {
+        font-size: .8rem;
+    }
+
+    body {
+        background: #fdf1ec;
+    }
+
+    .iconeStat {
+        font-size: 1.9rem;
+        color: #c56363;
+    }
+
+    .carteStat {
+        margin-bottom: 20px;
+    }
+
+    .card {
+        background: #faf6f5;
+        border-radius: 10px;
+    }
+
+    .carte span {
+        font-size: 1.05em;
+    }
+
+    #h2Carte {
+        color: #000;
+        font-size: 26px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: uppercase;
+        position: relative;
+        margin: 30px 0 80px;
+        font-family: century;
+        margin-top: 80px;
+        margin-bottom: 50px;
+    }
+
+    .backBoutique a {
+        float: right;
+        display: inline-block;
+        height: 50px;
+        width: 350px;
+        margin: 10 40px 0 16px;
+        box-sizing: border-box;
+        border: transparent;
+        border-radius: 60px;
+        font-family: 'Raleway', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: #bd5757;
+        cursor: pointer;
+        outline: none;
+        text-decoration: underline;
+    }
+
+        .backBoutique a:hover {
+            color: #212529ba;
+        }
+</style>
+<h2 id="h2Carte">Statistiques de votre boutique</h2>
+<div style="position: absolute; width: 300px; right: auto; height: 60px; margin-top: -120px; left: 100px; " class="backBoutique">
+    <a asp-action="Details" asp-controller="Boutiques" asp-route-id="@ViewBag.Boutique.Id">
+        <i class="fas fa-backward"></i> Back to @ViewBag.Boutique.Nom
+    </a>
+</div>
+<div class="row" style=" margin-right: 100px; margin-left: 100px;">
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2" style=" border-left: .25rem solid #ffc107 !important;">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div style="color: #ffc107" class="text-xs font-weight-bold  text-uppercase mb-1">
+                            Nombre d'offres
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.nombreOffres</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-tags fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2" style="border-left: .25rem solid #bd5757 !important;">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div style="color: #bd5757" class="text-xs font-weight-bold  text-uppercase mb-1">
+                            Nombre de favoris
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.nombreFavoris</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-heart fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2" style="border-left: .25rem solid #6e707e !important;">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div style="color: #6e707e" class="text-xs font-weight-bold  text-uppercase mb-1">
+                            Nouveaux posts du mois
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.nombrePostDuMois</div>
+                    </div>
+                    <div class="col-auto">
+                        <img src="~/Images/nouvGris.png" style="width:45px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2" style="border-left: .25rem solid #36b9cc !important;">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div style="color: #36b9cc" class="text-xs font-weight-bold text-uppercase mb-1">
+                            Nombre de clients
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.nombreClients</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-users fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Pie Chart -->
+<div class="col-xl-4 col-lg-5">
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+            <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                     aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-header">Dropdown Header:</div>
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+            <div class="chart-pie pt-4 pb-2">
+                <canvas id="myPieChart"></canvas>
+            </div>
+            <div class="mt-4 text-center small">
+                <span class="mr-2">
+                    <i class="fas fa-circle text-primary"></i> Direct
+                </span>
+                <span class="mr-2">
+                    <i class="fas fa-circle text-success"></i> Social
+                </span>
+                <span class="mr-2">
+                    <i class="fas fa-circle text-info"></i> Referral
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Area Chart -->
+<div class="col-xl-8 col-lg-7">
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+            <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                     aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-header">Dropdown Header:</div>
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+            <div class="chart-area">
+                <canvas id="myAreaChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>

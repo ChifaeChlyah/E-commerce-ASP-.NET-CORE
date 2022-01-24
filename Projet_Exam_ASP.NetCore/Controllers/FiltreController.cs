@@ -50,6 +50,10 @@ namespace Projet_Exam_ASP.NetCore.Controllers
         {
             return Enum.GetNames(typeof(Catégorie)).ToList();
         }
+        public List<String> GetVilles()
+        {
+            return Enum.GetNames(typeof(Ville)).ToList();
+        }
         public List<String> GetsousCategories(int cat)
         {
             List<String> sousCatList;
@@ -76,10 +80,10 @@ namespace Projet_Exam_ASP.NetCore.Controllers
             }
             return sousCatList;
         }
-        public void test()
-        {
-            ViewBag.random = (new Random()).Next();
-        }
+        //public void test()
+        //{
+        //    ViewBag.random = (new Random()).Next();
+        //}
         public IActionResult FiltreParCategories(int cat, int? souscat)
         {
             catégorie = cat;

@@ -17,13 +17,13 @@ namespace Projet_Exam_ASP.NetCore.Areas.Identity
         {
             builder.ConfigureServices((context, services) =>
             {
-                services.AddDbContext<AppDbContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("AppDbContextConnection")));
+                //services.AddDbContext<AppDbContext>(options =>
+                //    options.UseSqlServer(
+                //        context.Configuration.GetConnectionString("AppDbContextConnection")));
 
-                services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = false)
-                    .AddRoles<IdentityRole>()
-                    .AddEntityFrameworkStores<AppDbContext>();
+                //services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                //    .AddRoles<IdentityRole>()
+                //    .AddEntityFrameworkStores<AppDbContext>();
             });
         }
     }

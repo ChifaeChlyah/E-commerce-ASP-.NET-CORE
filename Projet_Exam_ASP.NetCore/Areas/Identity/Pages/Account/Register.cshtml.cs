@@ -148,7 +148,7 @@ namespace Projet_Exam_ASP.NetCore.Areas.Identity.Pages.Account
                     string fileName = Path.GetFileNameWithoutExtension(Input.ImageProfile.FileName);
                     string fileExtention = Path.GetExtension(Input.ImageProfile.FileName);
                     fileName = fileName + DateTime.Now.ToString("yymmssfff");
-                    string path = Path.Combine(wwwRootPath + "/images/Profile" + fileName);
+                    string path = Path.Combine(wwwRootPath + "/images/Profiles" + fileName);
                     using (var fileStream = new FileStream(path, FileMode.Create))
                     {
                         await Input.ImageProfile.CopyToAsync(fileStream);
@@ -162,7 +162,7 @@ namespace Projet_Exam_ASP.NetCore.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    img = _appDbContext.Images.Where(i=>i.Nom== "Profile_Icone_Par_Defaut").First();
+                    img = _appDbContext.Images.Where(i=>i.Nom== "Profile_Icone_Par_Defaut.png").First();
                 }
                 user.Image = img;
 
@@ -173,12 +173,12 @@ namespace Projet_Exam_ASP.NetCore.Areas.Identity.Pages.Account
                     Image imgB;
                     if (Input.ImageBoutique != null)
                     {
-                        //pour ajouter k=l'image dans le dossier Images------------
+                        //pour ajouter l'image dans le dossier Images------------
                         string wwwRootPath = _hostEnvironment.WebRootPath;
                         string fileName = Path.GetFileNameWithoutExtension(Input.ImageBoutique.FileName);
                         string fileExtention = Path.GetExtension(Input.ImageBoutique.FileName);
                         fileName = fileName + DateTime.Now.ToString("yymmssfff");
-                        string path = Path.Combine(wwwRootPath + "/images/Boutique" + fileName);
+                        string path = Path.Combine(wwwRootPath + "/images/Boutiques" + fileName);
                         using (var fileStream = new FileStream(path, FileMode.Create))
                         {
                             await Input.ImageBoutique.CopyToAsync(fileStream);
@@ -192,7 +192,7 @@ namespace Projet_Exam_ASP.NetCore.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        imgB = _appDbContext.Images.Where(i => i.Nom == "Boutique_Icone_Par_Defaut").First();
+                        imgB = _appDbContext.Images.Where(i => i.Nom == "Boutique_Icone_Par_Defaut.png").First();
                     }
                     Boutique boutique = new Boutique
                     {

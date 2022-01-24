@@ -541,7 +541,6 @@ C:\Users\Chifae\source\repos\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\P
 C:\Users\Chifae\source\repos\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP.NetCore\obj\Debug\net5.0\Razor\Views\Offres\Edit.cshtml.g.cs
 C:\Users\Chifae\source\repos\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP.NetCore\obj\Debug\net5.0\Razor\Views\Offres\Index.cshtml.g.cs
 C:\Users\Chifae\source\repos\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP.NetCore\obj\Debug\net5.0\Razor\Views\Offres\MesFavories.cshtml.g.cs
-C:\Users\Chifae\source\repos\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP.NetCore\obj\Debug\net5.0\Razor\Views\Offres\MesOffres.cshtml.g.cs
 C:\Users\Chifae\source\repos\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP.NetCore\obj\Debug\net5.0\Razor\Views\Offres\Reduction.cshtml.g.cs
 C:\Users\Chifae\source\repos\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP.NetCore\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\Chifae\source\repos\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP.NetCore\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
@@ -560,3 +559,8 @@ C:\Users\Chifae\source\repos\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\P
 C:\Users\Chifae\source\repos\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP.NetCore\obj\Debug\net5.0\Projet_Exam_ASP.NetCore.genruntimeconfig.cache
 C:\Users\Chifae\source\repos\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP.NetCore\obj\Debug\net5.0\Razor\Views\Shared\_Layout2.cshtml.g.cs
 C:\Users\Chifae\source\repos\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP.NetCore\obj\Debug\net5.0\Razor\Views\Shared\_Filtres.cshtml.g.cs
+C:\Users\Chifae\source\repos\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP.NetCore\obj\Debug\net5.0\Razor\Views\Shared\_Layout3.cshtml.g.cs
+C:\Users\Chifae\source\repos\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP.NetCore\obj\Debug\net5.0\Razor\Views\Offres\toutesLesOffres.cshtml.g.cs
+C:\Users\Chifae\source\repos\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP.NetCore\obj\Debug\net5.0\Razor\Views\Boutiques\Statitstics.cshtml.g.cs
+C:\Users\Chifae\source\repos\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP.NetCore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\Email.cshtml.g.cs
+C:\Users\Chifae\source\repos\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP_.NetCore\Projet_Exam_ASP.NetCore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml.g.cs

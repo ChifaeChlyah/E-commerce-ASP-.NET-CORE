@@ -70,9 +70,10 @@
 
     .thumb-wrapper {
         text-align: center;
-        background: #dee2e640;
+        background: #fef8f6b3;
         width: 220px;
         margin: 20px;
+        box-shadow: 0px 14px 32px 0px rgb(0 0 0 / 15%);
     }
 
     .thumb-content {
@@ -119,7 +120,7 @@
 
             <div class="thumb-wrapper" id="@string.Format("offre{0}", Model[j].Id)">
                 <table style="width:220px">
-                    <tr><td style="align-content: center; background: #e03939; color: white; height: 40px; vertical-align: middle; font-size: 1.5em; font-family: century; padding-top: 10px; "><H6>Favoris<span> @ViewBag.NbFavorisParOffre[j]  <i style="color: white;" class="fas fa-heart"></i></span></H6></td></tr>
+                    <tr><td style="align-content: center; background: #bd5757; color: white; height: 40px; vertical-align: middle; font-size: 1.5em; font-family: century; padding-top: 10px; "><H6>Favoris<span> @ViewBag.NbFavorisParOffre[j]  <i style="color: white;" class="fas fa-heart"></i></span></H6></td></tr>
                     <tr>
                         <td>
 
@@ -127,7 +128,7 @@
                                 <tr>
                                     <td style="padding-top: 5px ;text-align:end;width:220px;">
                                         <a style="cursor: pointer; margin-right: 5px; " onclick="FavoriChange(@Model[j].Id);">
-                                            <i class="fas fa-heart" style=" font-size:1.5em"></i>
+                                            <i class="fas fa-heart" style="color: #bd5757; font-size:1.5em"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -135,7 +136,7 @@
                             <table>
                                 <tr>
                                     <td style="padding-top: 8px;text-align: center;width:220px;">
-                                        <h6 style="font-size: 0.9rem; color: #e03939">@Model[j].Date_Dépot</h6>
+                                        <h6 style="font-size: 0.9rem; color: #bd5757">@Model[j].Date_Dépot</h6>
                                     </td>
                                 </tr>
                             </table>

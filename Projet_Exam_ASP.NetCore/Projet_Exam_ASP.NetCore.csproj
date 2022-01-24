@@ -16,11 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Images\Boutique\" />
-    <Folder Include="wwwroot\Images\Profiles\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\Images\Projet_Exam_ASP_.NetCore.sln" />
   </ItemGroup>
 

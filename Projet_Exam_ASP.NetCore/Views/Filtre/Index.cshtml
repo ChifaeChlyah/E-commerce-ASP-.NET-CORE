@@ -138,7 +138,51 @@
 
 
 <style>
+    body {
+        background: #e8cbc0;
 
+        min-height: 100vh;
+    }
+
+    .bootstrap-select .bs-ok-default::after {
+        width: 0.3em;
+        height: 0.6em;
+        border-width: 0 0.1em 0.1em 0;
+        transform: rotate(45deg) translateY(0.5rem);
+    }
+
+    .btn.dropdown-toggle:focus {
+        outline: none !important;
+    }
+
+    [type="checkbox"] + label {
+        position: absolute;
+    }
+
+    [type="checkbox"] {
+        position: relative;
+        left: 15px;
+        top: -4px;
+        z-index: 0;
+        -webkit-appearance: none;
+    }
+
+        [type="checkbox"] + label::before {
+            width: 15px;
+            height: 15px;
+            background-color: #000;
+            display: block;
+            content: "";
+            float: left;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            z-index: 5;
+            position: relative;
+        }
+
+    input[type="checkbox"]:checked + label::before {
+        background-color: #c72f2f;
+    }
 
     #bd h2 {
         color: #000;
@@ -229,7 +273,7 @@
 
         .item-price span {
             color: #bd5757;
-            font-size: 110%;
+            font-size: 100%;
         }
 
     .fa-heart {
@@ -239,6 +283,95 @@
         .fa-heart:hover {
             color: #e0393985;
         }
+
+    .product-price-btn {
+        height: 103px;
+        width: 327px;
+        margin-top: 17px;
+        position: relative;
+    }
+
+        .product-price-btn p {
+            display: inline-block;
+            position: absolute;
+            top: -13px;
+            height: 50px;
+            font-family: 'Trocchi', serif;
+            margin: 0 0 0 38px;
+            font-size: 28px;
+            font-weight: lighter;
+            color: #bd5757;
+        }
+
+
+
+        .product-price-btn button {
+            float: right;
+            display: inline-block;
+            height: 50px;
+            width: 176px;
+            margin: 0 40px 0 16px;
+            box-sizing: border-box;
+            border: transparent;
+            border-radius: 60px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #ffffff;
+            background-color: #bd5757;
+            cursor: pointer;
+            outline: none;
+        }
+
+            .product-price-btn button:hover {
+                background-color: #000;
+            }
+
+    .dropbtn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+    .form-control {
+        border: 1px solid #ced4da00;
+    }
 </style>
 
 <script>
@@ -257,8 +390,18 @@
         if (slide1 > slide2) { var tmp = slide2; slide2 = slide1; slide1 = tmp; }
 
         var displayElement = parent.getElementsByClassName("rangeValues")[0];
-        displayElement.innerHTML = "$ " + slide1 + "k - $" + slide2 + "k";
+        displayElement.innerHTML = "DH " + slide1 + "-" + slide2+"DH" ;
     }
+    $(document).ready(function () {
+    });
+
+    $('#ville').ready(function () {
+        $.get("/Filtre/GetVilles", function (data) {
+            data.forEach(f => {
+                $("#ville").append('<a href="#">' + f + '</a>');
+            })
+        })
+    })
 
     window.onload = function () {
         // Initialize Sliders
@@ -274,10 +417,14 @@
             }
         }
     }
-    $("#reload").click(function () {
-        $.get("/Filtre/test");
-        $("#test").load(" #test");
-    })
+    $(function () {
+        $('.selectpicker').selectpicker();
+    });
+    //function onclickreload() {
+    //    alert('test');
+    //    $.get("/Filtre/test");
+    //    $("#test").load(" #test");
+    //}
 </script>
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
@@ -286,92 +433,134 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewBag.Title</title>
     <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Bentham|Playfair+Display|Raleway:400,500|Suranna|Trocchi" rel="stylesheet">
+
+    @*<meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>*@
 
 </head>
-<body>
+<body style="background-color: #bd57570f;">
     <div style="display:inline-flex">
-        <div style="border-right: 1px solid #8080807a; width: 250px; margin-top: 20px; margin-right: 20px; "></div>
-            <div style="  width: 250px; margin-top: 20px; margin-right: 20px; position:fixed ">
-                <p>Price Range</p>
-                <section class="range-slider" style=" margin-right: 0px; width: 200px; left: 25px; height: 100px;">
-                    <span class="rangeValues"></span>
-                    <input value="500" min="500" max="50000" step="500" type="range" style="width: 200px;">
-                    <input value="50000" min="500" max="50000" step="500" type="range" style="width: 200px;">
-                </section>
-                <input class="form-control" type="date" style="background-color: #ffffff;border-radius: 4px;border-color: #f1efef;margin-left: 25px;width: 205px;height: 34px;">
-                <input class="form-control" type="date" style="background-color: #ffffff;border-radius: 4px;border-color: #f1efef;margin-left: 25px;width: 205px;height: 34px;">
-                <select class="form-control" asp-items="Html.GetEnumSelectList<Ville>()">
-                    <option selected="selected" value="">Please select</option>
-                </select>
-                <input type="checkbox" />offres speciales seulement
-                <p id="test">@ViewBag.random</p>
-                <button id="reload">reload</button>
+        <div style=" width: 250px; margin-top: 20px; margin-right: 20px; margin-left: 20px;">
+            <p style="font-family: century; font-size: 20px; border-bottom: 1px solid #8080807a;">Price Range</p>
+            <section class="range-slider" style=" margin-right: 0px; width: 200px; left: 25px; height: 100px;top:10px">
+                <span class="rangeValues"></span>
+                <input value="0" min="0" max="10000000000" step="500" type="range" style="top: 30px; width: 200px;">
+                <input value="0" min="500" max="10000000000" step="500" type="range" style="top: 30px; width: 200px;">
+            </section>
+            <p style="border-bottom: 1px solid #8080807a;">
+                <label style="margin-bottom: 0; font-family: century; font-size: 20px;">Date Range</label>
+            </p>
+
+            <input class="form-control" type="date" style="background-color: #bd57570f; margin-bottom: 10px; border-radius: 4px; border-color: #bd5757; margin-left: 25px; width: 205px; height: 34px; ">
+
+            <input class="form-control" type="date" style="background-color: #bd57570f; margin-bottom: 20px; border-radius: 4px; border-color: #bd5757; margin-left: 25px; width: 205px; height: 34px; ">
+            <p style="margin-bottom: 20px; font-family: century; font-size: 20px; border-bottom: 1px solid #8080807a; ">ville Range</p>
+
+            <div class="dropdown" style="width:232px;">
+                <button class="dropbtn" style="height:34px; width: 205px; background-color: #bd5757; margin-left: 24px; font-size: 18px; border-radius: 7px;padding-bottom:0px;padding-top:0px ">Select please</button>
+                <div class="dropdown-content" id="ville" style=" width: 205px; margin-left: 24px; font-size: 18px; margin-bottom: 20px; ">
+
+                </div>
             </div>
-            <div style="display: inline-flex; flex-direction: column; margin-left: 35px; margin-top: 20px;">
-                <div style=" height: 120px; box-shadow: -1px 0px 6px 1px rgb(0 0 0 / 2%), 0 6px 20px 0 rgb(0 0 0 / 10%); margin-top: 40px; background: white; border-radius: 10px; width: 1040px; align-self: center;">
+
+
+            <div class="checkbox">
+                <label for="confirm"><input id="confirm" type="checkbox" />offres speciales seulement</label>
+            </div>
+
+
+
+            <p id="test" style="margin-bottom:20px;">@ViewBag.random</p>
+            <div class="product-price-btn">
+                <button type="button" style="height: 34px; width: 150px; font-size: 15px; margin-right:130px;margin-left:15px">reload</button>
+            </div>
+
+            @*<button id="reload" type="button" class="btn btn-outline-danger" style="color: #bd5757; border-color: #bd5757; background-color: #bd57570f; ">reload</button>*@
+
+        </div>
+        <div style="display: inline-flex; flex-direction: column; margin-left: 35px; margin-top: 20px;">
+            <p style="font-family: century;width:1040px; font-size: 20px; border-bottom: 1px solid #8080807a; margin-left: 40px; margin-bottom: 0px; ">Mini Bar</p>
+            <div style=" height: 120px; box-shadow: -1px 0px 6px 1px rgb(0 0 0 / 2%), 0 6px 20px 0 rgb(0 0 0 / 10%); margin-top: 10px; background: #6c757d0d; border-radius: 10px; width: 1040px; align-self: center;">
+                <div style=" display: inline-flex; margin-top: 43px; margin-bottom: 43px; ">
+                    <select class="form-control" style=" background-color: #f4efef;  border-bottom: 2px solid #8080807a; margin-right: 20px; margin-left: 100px; border-radius: 4px; margin-left: 25px; width: 205px; height: 34px; ">
+                        <option selected="selected" value="">favoris</option>
+                        <option selected="selected" value="">prix</option>
+                        <option selected="selected" value="">date</option>
+                    </select>
+                    <select class="form-control" style="background-color: #f4efef;  border-bottom: 2px solid #8080807a; margin-right: 20px; margin-left: 100px; border-radius: 4px; margin-left: 25px; width: 205px; height: 34px; ">
+                        <option selected="selected" value="">du plus au moin</option>
+                        <option selected="selected" value="">du moin au plus</option>
+
+                    </select>
 
                 </div>
-                <div style="margin-top: 30px; margin-left: 40px; margin-right: 40px; margin-bottom: 40px;">
-                    <div id="bd">
-                        <div style=" display: inline-flex; width: 1040px; flex-direction: row; flex-wrap: wrap; ">
-                            @for (int j = 0; j < Model.Count(); j++)
-                            {
 
-                                <div class="thumb-wrapper" id="@string.Format("offre{0}", Model[j].Id)">
-                                    <table style="width:220px">
-                                        <tr><td style="align-content: center; background: #e03939; color: white; height: 40px; vertical-align: middle; font-size: 1.5em; font-family: century; padding-top: 10px; "><H6>Favoris<span> @*@ViewBag.NbFavorisParOffre[j]*@  <i style="color: white;" class="fas fa-heart"></i></span></H6></td></tr>
-                                        <tr>
-                                            <td>
+            </div>
+            <div style="margin-top: 30px; margin-left: 40px; margin-right: 40px; margin-bottom: 40px; ">
+                <div id="bd">
+                    <div style=" display: inline-flex; width: 1040px; flex-direction: row; flex-wrap: wrap; ">
+                        @for (int j = 0; j < Model.Count(); j++)
+                        {
 
-                                                <table style="position: absolute; width: 220px; ">
-                                                    <tr>
-                                                        <td style="padding-top: 5px ;text-align:end;width:220px;">
-                                                            <a style="cursor: pointer; margin-right: 5px; " onclick="FavoriChange(@Model[j].Id);">
-                                                                <i class="fas fa-heart" style=" font-size:1.5em"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                                <table>
-                                                    <tr>
-                                                        <td style="padding-top: 8px;text-align: center;width:220px;">
-                                                            <h6 style="font-size: 0.9rem; color: #e03939">@Model[j].Date_Dépot</h6>
-                                                        </td>
-                                                    </tr>
-                                                </table>
+                            <div class="thumb-wrapper" id="@string.Format("offre{0}", Model[j].Id)">
+                                <table style="width:220px">
+                                    <tr><td style="align-content: center; background: #e03939; color: white; height: 40px; vertical-align: middle; font-size: 1.5em; font-family: century; padding-top: 10px; "><H6>Favoris<span> @*@ViewBag.NbFavorisParOffre[j]*@  <i style="color: white;" class="fas fa-heart"></i></span></H6></td></tr>
+                                    <tr>
+                                        <td>
+
+                                            <table style="position: absolute; width: 220px; ">
+                                                <tr>
+                                                    <td style="padding-top: 5px ;text-align:end;width:220px;">
+                                                        <a style="cursor: pointer; margin-right: 5px; " onclick="FavoriChange(@Model[j].Id);">
+                                                            <i class="fas fa-heart" style=" font-size:1.5em"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <table>
+                                                <tr>
+                                                    <td style="padding-top: 8px;text-align: center;width:220px;">
+                                                        <h6 style="font-size: 0.9rem; color: #e03939">@Model[j].Date_Dépot</h6>
+                                                    </td>
+                                                </tr>
+                                            </table>
 
 
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <div class="img-box">
-                                        <img src="#" class="img-fluid" asp-append-version="true" alt="">
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="img-box">
+                                    <img src="#" class="img-fluid" asp-append-version="true" alt="">
 
-                                    </div>
-                                    <div class="thumb-content">
-                                        <h4>@Model[j].Titre</h4>
-                                        @{double nouv = Model[j].prix - Model[j].reduction * Model[j].prix / 100;}
-                                        @if (Model[j].reduction > 0)
-                                        {
-                                            <p class="item-price"><strike>@Model[j].prix</strike> <span>@nouv</span></p>
-                                        }
-                                        else
-                                        {
-                                            <p class="item-price"><span style="color:gray">@nouv</span></p>
-                                        }
-                                        <a asp-controller="Offres" asp-action="Details" asp-route-id="@Model[j].Id" style="width:150px;" class="btn btn-primary">View details</a>
-                                    </div>
                                 </div>
-                            }
-                        </div>
+                                <div class="thumb-content">
+                                    <h4>@Model[j].Titre</h4>
+                                    @{double nouv = Model[j].prix - Model[j].reduction * Model[j].prix / 100;}
+                                    @if (Model[j].reduction > 0)
+                                    {
+                                        <p class="item-price"><strike>@Model[j].prix</strike> <span>@nouv</span></p>
+                                    }
+                                    else
+                                    {
+                                        <p class="item-price"><span style="color:gray">@nouv</span></p>
+                                    }
+                                    <a asp-controller="Offres" asp-action="Details" asp-route-id="@Model[j].Id" style="width:150px;" class="btn btn-primary">View details</a>
+                                </div>
+                            </div>
+                        }
                     </div>
-
                 </div>
+
             </div>
         </div>
+    </div>
 </body>
 </html>
 

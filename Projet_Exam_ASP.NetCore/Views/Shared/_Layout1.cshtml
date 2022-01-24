@@ -26,7 +26,7 @@
 <body>
     <header style="position: relative;">
         @*#17a2b8*@
-        <nav style="  background: #1c3341; height: 60px; align-content: center;" class="navbar navbar-expand-sm fixed-top navbar-toggleable-sm navbar-light border-bottom box-shadow ">
+        <nav style="  background: black; height: 60px; align-content: center;" class="navbar navbar-expand-sm fixed-top navbar-toggleable-sm navbar-light border-bottom box-shadow ">
 
             <!----->
             <table>
@@ -39,9 +39,9 @@
                             <div style=" width:200px;">
                                 @*<p style="margin-bottom: 0px; font-size: 1.4em; color: white;"><i class="fas fa-shopping-bag" style="margin-right:6px; color:white;"></i>  Arak<strong>Ln9at</strong> </p>*@
                                 <p style="margin-bottom: 0px; width: 300px; ">
-                                    <img src="~/Images/Image5.png" style="width:100px ;" />
+                                    <img src="~/Images/logoShopica.png" style="height:100px ;margin-top:5px;" />
 
-                                    <img src="~/Images/Image6.png" style="width:170px ; margin-top:10px" />
+                                    @*<img src="~/Images/shopica.png" style="width:170px ; margin-top:10px" />*@
                                 </p>
 
                             </div>
@@ -151,7 +151,7 @@
                                 {
                                     <td class="nav-item" style=" width: 150px; text-align: center; ">
                                         <div style="border-left: 1px solid #8080807a; ">
-                                            <a asp-area="" asp-controller="Offres" asp-action="MesFavories" ><i class="fas fa-heart" style="font-size: 1.3rem; color:grey"></i></a>
+                                            <a asp-area="" asp-controller="Offres" asp-action="MesFavories"><i class="fas fa-heart" style="font-size: 1.3rem; color:grey"></i></a>
                                             <a style="padding-top: 0px; padding-bottom: 0; color: #21252999; font-weight: 500; " class="nav-link" asp-area="" asp-controller="Offres" asp-action="MesFavories">Favoris</a>
                                         </div>
                                     </td>
@@ -169,10 +169,10 @@
                                 {
                                     <td class="nav-item" style=" width: 150px; text-align: center; ">
                                         <div style="border-left: 1px solid #8080807a; ">
-                                            <a asp-area="" asp-controller="Offres" asp-action="Index" asp-route-id="1">
+                                            <a asp-area="" asp-controller="Offres" asp-action="ToutesLesOffres" asp-route-id="@ViewBag.currentUser.Id">
                                                 <i class="fas fa-user-tag" style="font-size: 1.3em; color:grey"></i>
                                             </a>
-                                            <a style="padding-top: 0px; padding-bottom: 0; color: #21252999; font-weight: 500; " class="nav-link " asp-area="" asp-controller="Offres" asp-action="Index" asp-route-id="1">Mes offres</a>
+                                            <a style="padding-top: 0px; padding-bottom: 0; color: #21252999; font-weight: 500; " class="nav-link " asp-area="" asp-controller="Offres" asp-action="ToutesLesOffres" asp-route-id="@ViewBag.CurrentUser.Id">Mes offres</a>
                                         </div>
                                     </td>
                                 }
