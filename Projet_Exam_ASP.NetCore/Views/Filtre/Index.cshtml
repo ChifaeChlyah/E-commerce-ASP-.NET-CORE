@@ -140,7 +140,6 @@
 <style>
     body {
         background: #e8cbc0;
-
         min-height: 100vh;
     }
 
@@ -175,14 +174,134 @@
             content: "";
             float: left;
             margin-right: 5px;
-            margin-bottom: 5px;
             z-index: 5;
             position: relative;
         }
-
     input[type="checkbox"]:checked + label::before {
         background-color: #c72f2f;
     }
+
+    .product-price-btn {
+        height: 103px;
+        width: 327px;
+        margin-top: 17px;
+        position: relative;
+    }
+
+        .product-price-btn p {
+            display: inline-block;
+            position: absolute;
+            top: -13px;
+            height: 50px;
+            font-family: 'Trocchi', serif;
+            margin: 0 0 0 38px;
+            font-size: 28px;
+            font-weight: lighter;
+            color: #05040442;
+        }
+
+
+
+        .product-price-btn button {
+            float: right;
+            display: inline-block;
+            height: 50px;
+            width: 176px;
+            margin: 0 40px 0 16px;
+            box-sizing: border-box;
+            border: transparent;
+            border-radius: 60px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #ffffff;
+            background-color: #05040442;
+            cursor: pointer;
+            outline: none;
+        }
+
+            .product-price-btn button:hover {
+                background-color: #000;
+            }
+
+    .dropbtn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+
+    .form-control {
+        border: 1px solid #ced4da00;
+    }
+    /*imane 9atli ndir commentaire hna fayn bdit ana */
+    .fa-heart {
+        color: #bd5757;
+    }
+
+        .fa-heart:hover {
+            color: #e0393985;
+        }
+
+    .backBoutique a {
+        float: right;
+        display: inline-block;
+        height: 50px;
+        width: 350px;
+        margin: 10 40px 0 16px;
+        box-sizing: border-box;
+        border: transparent;
+        border-radius: 60px;
+        font-family: 'Raleway', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: #bd5757;
+        cursor: pointer;
+        outline: none;
+        text-decoration: underline;
+    }
+
+        .backBoutique a:hover {
+            color: #212529ba;
+        }
 
     #bd h2 {
         color: #000;
@@ -197,10 +316,6 @@
         #bd h2 b {
             color: #ffc000;
         }
-
-
-
-
 
     .img-box {
         height: 160px;
@@ -255,6 +370,7 @@
         background: #dee2e640;
         width: 220px;
         margin: 20px;
+        box-shadow: 0px 14px 32px 0px rgb(0 0 0 / 15%);
     }
 
     .thumb-content {
@@ -273,105 +389,9 @@
 
         .item-price span {
             color: #bd5757;
-            font-size: 100%;
+            font-size: 110%;
         }
 
-    .fa-heart {
-        color: #e03939;
-    }
-
-        .fa-heart:hover {
-            color: #e0393985;
-        }
-
-    .product-price-btn {
-        height: 103px;
-        width: 327px;
-        margin-top: 17px;
-        position: relative;
-    }
-
-        .product-price-btn p {
-            display: inline-block;
-            position: absolute;
-            top: -13px;
-            height: 50px;
-            font-family: 'Trocchi', serif;
-            margin: 0 0 0 38px;
-            font-size: 28px;
-            font-weight: lighter;
-            color: #bd5757;
-        }
-
-
-
-        .product-price-btn button {
-            float: right;
-            display: inline-block;
-            height: 50px;
-            width: 176px;
-            margin: 0 40px 0 16px;
-            box-sizing: border-box;
-            border: transparent;
-            border-radius: 60px;
-            font-family: 'Raleway', sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: #ffffff;
-            background-color: #bd5757;
-            cursor: pointer;
-            outline: none;
-        }
-
-            .product-price-btn button:hover {
-                background-color: #000;
-            }
-
-    .dropbtn {
-        background-color: #04AA6D;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-    }
-
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-    }
-
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-            .dropdown-content a:hover {
-                background-color: #ddd;
-            }
-
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-    .dropdown:hover .dropbtn {
-        background-color: #3e8e41;
-    }
-    .form-control {
-        border: 1px solid #ced4da00;
-    }
 </style>
 
 <script>
@@ -390,7 +410,7 @@
         if (slide1 > slide2) { var tmp = slide2; slide2 = slide1; slide1 = tmp; }
 
         var displayElement = parent.getElementsByClassName("rangeValues")[0];
-        displayElement.innerHTML = "DH " + slide1 + "-" + slide2+"DH" ;
+        displayElement.innerHTML = "DH " + slide1 + "-" + slide2 + "DH";
     }
     $(document).ready(function () {
     });
@@ -445,7 +465,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>*@
 
 </head>
-<body style="background-color: #bd57570f;">
+<body style="background-color: #fdf1ec;">
     <div style="display:inline-flex">
         <div style=" width: 250px; margin-top: 20px; margin-right: 20px; margin-left: 20px;">
             <p style="font-family: century; font-size: 20px; border-bottom: 1px solid #8080807a;">Price Range</p>
@@ -471,96 +491,97 @@
             </div>
 
 
-            <div class="checkbox">
-                <label for="confirm"><input id="confirm" type="checkbox" />offres speciales seulement</label>
+            <div class="checkbox" style=" margin-top: 30px;margin-left:25px">
+                <input id="confirm" type="checkbox"  />
+                <label for="confirm" style="color: transparent; width: 200px; z-index: 0; "> </label>
             </div>
-
+            <p style="position: absolute; left: 75px; top: 558px; pointer-events: none; ">Offres spéciales</p>
 
 
             <p id="test" style="margin-bottom:20px;">@ViewBag.random</p>
-            <div class="product-price-btn">
-                <button type="button" style="height: 34px; width: 150px; font-size: 15px; margin-right:130px;margin-left:15px">reload</button>
-            </div>
+
 
             @*<button id="reload" type="button" class="btn btn-outline-danger" style="color: #bd5757; border-color: #bd5757; background-color: #bd57570f; ">reload</button>*@
 
         </div>
-        <div style="display: inline-flex; flex-direction: column; margin-left: 35px; margin-top: 20px;">
-            <p style="font-family: century;width:1040px; font-size: 20px; border-bottom: 1px solid #8080807a; margin-left: 40px; margin-bottom: 0px; ">Mini Bar</p>
-            <div style=" height: 120px; box-shadow: -1px 0px 6px 1px rgb(0 0 0 / 2%), 0 6px 20px 0 rgb(0 0 0 / 10%); margin-top: 10px; background: #6c757d0d; border-radius: 10px; width: 1040px; align-self: center;">
-                <div style=" display: inline-flex; margin-top: 43px; margin-bottom: 43px; ">
-                    <select class="form-control" style=" background-color: #f4efef;  border-bottom: 2px solid #8080807a; margin-right: 20px; margin-left: 100px; border-radius: 4px; margin-left: 25px; width: 205px; height: 34px; ">
-                        <option selected="selected" value="">favoris</option>
-                        <option selected="selected" value="">prix</option>
-                        <option selected="selected" value="">date</option>
-                    </select>
-                    <select class="form-control" style="background-color: #f4efef;  border-bottom: 2px solid #8080807a; margin-right: 20px; margin-left: 100px; border-radius: 4px; margin-left: 25px; width: 205px; height: 34px; ">
-                        <option selected="selected" value="">du plus au moin</option>
-                        <option selected="selected" value="">du moin au plus</option>
+        <div style=" display: inline-flex; width: 1200px; flex-direction: row; flex-wrap: wrap; margin-left: 43px;">
+            @for (int j = 0; j < Model.Count(); j++)
+            {
+                <div class="thumb-wrapper">
+                    <table style="width:220px">
+                        <tr>
+                            <td style="align-content: center; background: #bd5757; color: white; height: 40px; vertical-align: middle; font-size: 1.5em; font-family: century; padding-top: 10px; ">
+                                <H6>Favoris<span> @ViewBag.NbFavorisParOffre[j]  <i class="fas fa-heart"></i></span></H6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 5px ;text-align:end">
 
-                    </select>
-
-                </div>
-
-            </div>
-            <div style="margin-top: 30px; margin-left: 40px; margin-right: 40px; margin-bottom: 40px; ">
-                <div id="bd">
-                    <div style=" display: inline-flex; width: 1040px; flex-direction: row; flex-wrap: wrap; ">
-                        @for (int j = 0; j < Model.Count(); j++)
-                        {
-
-                            <div class="thumb-wrapper" id="@string.Format("offre{0}", Model[j].Id)">
-                                <table style="width:220px">
-                                    <tr><td style="align-content: center; background: #e03939; color: white; height: 40px; vertical-align: middle; font-size: 1.5em; font-family: century; padding-top: 10px; "><H6>Favoris<span> @*@ViewBag.NbFavorisParOffre[j]*@  <i style="color: white;" class="fas fa-heart"></i></span></H6></td></tr>
+                                <table style="position: absolute; width: 220px; ">
                                     <tr>
-                                        <td>
-
-                                            <table style="position: absolute; width: 220px; ">
-                                                <tr>
-                                                    <td style="padding-top: 5px ;text-align:end;width:220px;">
-                                                        <a style="cursor: pointer; margin-right: 5px; " onclick="FavoriChange(@Model[j].Id);">
+                                        <td style="padding-top: 5px ;text-align:end;width:220px;">
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                @if (ViewBag.CurrentUser != null && ViewBag.CurrentUser.Id == ViewBag.Proprétaire.Id)
+                                                {
+                                                    <a asp-action="Edit" asp-controller="Offres" asp-route-id="@Model[j].Id">
+                                                        <i class="fas fa-edit" style="margin-right: 5px; color: #bd5757; font-size: 1.3em"></i>
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a id="@string.Format("favoriAnchor{0}", Model[j].Id)" style=" margin-right: 5px; " onclick="FavoriChange(@Model[j].Id);">
+                                                        @if (ViewBag.isFavorisList != null && ViewBag.isFavorisList[j] == true)
+                                                        {
                                                             <i class="fas fa-heart" style=" font-size:1.5em"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <table>
-                                                <tr>
-                                                    <td style="padding-top: 8px;text-align: center;width:220px;">
-                                                        <h6 style="font-size: 0.9rem; color: #e03939">@Model[j].Date_Dépot</h6>
-                                                    </td>
-                                                </tr>
-                                            </table>
-
-
+                                                        }
+                                                        else
+                                                        {
+                                                            <i class="far fa-heart" style=" font-size: 1.5em"></i>
+                                                        }
+                                                    </a>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <a id="favoriAnchor" style=" margin-right: 5px; " asp-area="Identity" asp-page="/Account/Login">
+                                                    <i class="far fa-heart" style=" font-size:1.5em"></i>
+                                                </a>
+                                            }
                                         </td>
                                     </tr>
                                 </table>
-                                <div class="img-box">
-                                    <img src="#" class="img-fluid" asp-append-version="true" alt="">
+                                <table>
+                                    <tr>
+                                        <td style="padding-top: 8px;text-align: center;width:220px;">
+                                            <h6 style="font-size: 0.9rem; color: #bd5757">@Model[j].Date_Dépot</h6>
+                                        </td>
+                                    </tr>
+                                </table>
 
-                                </div>
-                                <div class="thumb-content">
-                                    <h4>@Model[j].Titre</h4>
-                                    @{double nouv = Model[j].prix - Model[j].reduction * Model[j].prix / 100;}
-                                    @if (Model[j].reduction > 0)
-                                    {
-                                        <p class="item-price"><strike>@Model[j].prix</strike> <span>@nouv</span></p>
-                                    }
-                                    else
-                                    {
-                                        <p class="item-price"><span style="color:gray">@nouv</span></p>
-                                    }
-                                    <a asp-controller="Offres" asp-action="Details" asp-route-id="@Model[j].Id" style="width:150px;" class="btn btn-primary">View details</a>
-                                </div>
-                            </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="img-box">
+                        <img src="@("~/images/Offres/" + ViewBag.images[j].Nom)" class="img-fluid" asp-append-version="true" alt="">
+
+                    </div>
+                    <div class="thumb-content">
+                        <h4>@Model[j].Titre</h4>
+                        @{double nouv = Model[j].prix - Model[j].reduction * Model[j].prix / 100;}
+                        @if (Model[j].reduction > 0)
+                        {
+                            <p class="item-price"><strike>@Model[j].prix</strike> <span>@nouv</span></p>
                         }
+                        else
+                        {
+                            <p class="item-price"><span style="color:gray">@nouv</span></p>
+                        }
+                        <a asp-controller="Offres" asp-action="Details" asp-route-id="@Model[j].Id" style="width:150px;" class="btn btn-primary">View details</a>
                     </div>
                 </div>
-
-            </div>
+            }
         </div>
-    </div>
 </body>
 </html>
 

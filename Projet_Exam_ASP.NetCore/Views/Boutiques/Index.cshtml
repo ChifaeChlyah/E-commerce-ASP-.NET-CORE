@@ -215,16 +215,16 @@
 
 <body>
     <h2 style="font-family: century; margin-top: 70px; margin-bottom: 50px; align-self: center; color: #000; font-size: 26px; font-weight: 300; text-align: center; text-transform: uppercase; position: relative;">Toutes les boutiques</h2>
-    <div style="display:inline-flex ;margin-left:90px">
+    <div style="display: inline-flex; flex-wrap: wrap; margin-left: 90px">
         @for (int i = 0; i < Model.Count(); i++)
         {
             <div class="wrapper">
                 <div class="product-img">
-                    <img style="background-color: #fdf1ec;" src="@("/images/Boutiques/" + ViewBag.images[i])" height="420" width="327">
+                    <img style="background-color: #fdf1ec; object-fit:cover" src="@("/images/Boutiques/" + ViewBag.images[i])" height="420" width="327">
                 </div>
                 <div class="product-info">
                     <div class="product-text">
-                        <h1>@Model[0].Nom</h1>
+                        <h1>@Model[i].Nom</h1>
                         @if (ViewBag.currentUser != null && ViewBag.currentUser.BoutiqueId == Model[i].Id)
                         {
                         <h2 style="color: #e03939; margin-top:5px" >Votre boutique</h2>

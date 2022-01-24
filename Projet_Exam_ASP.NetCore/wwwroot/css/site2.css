@@ -174,12 +174,14 @@ body {
 .register .nav-tabs {
     margin-top: 3%;
     border: none;
-    background: #cfd8e1;
+    background: white;
     border-radius: 1.5rem;
     width: 28%;
     margin-left: auto;
 }
-
+    .register .nav-tabs:hover {
+        background: #c5b3acb3;
+    }
 .register1 .nav-tabs {
     margin-top: 3%;
     border: none;

@@ -14,13 +14,21 @@ namespace Projet_Exam_ASP.NetCore.Models
     {
 
         public int Id { get; set; }
+        [Required]
         public String Titre { get; set; }
+        [Required]
         public String Ville { get; set; }
+        [Required]
         public double prix { get; set; }
+
         public DateTime Date_Dépot { get; set; }
+        [Required]
         public String Description { get; set; }
+        [Required]
         public Catégorie Catégorie { get; set; }
+
         public int IndiceSousCatégorie { get; set; }
+        [Required]
         public List<Image> Images { get; set; }
         public List<Propriété> Proprirétés { get; set; }
         public string AppUserId { get; set; }

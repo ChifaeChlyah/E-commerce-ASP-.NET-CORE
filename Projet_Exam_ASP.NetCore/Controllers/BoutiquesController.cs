@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Projet_Exam_ASP.NetCore.Areas.Identity.Data;
 using Projet_Exam_ASP.NetCore.Data;
+using Projet_Exam_ASP.NetCore.Data.enums;
 using Projet_Exam_ASP.NetCore.Models;
 
 namespace Projet_Exam_ASP.NetCore.Controllers
@@ -162,6 +164,32 @@ namespace Projet_Exam_ASP.NetCore.Controllers
             
             return View(boutique);
         }
+        public List<String> GetsousCategories(int cat)
+        {
+            List<String> sousCatList;
+            switch (cat)
+            {
+                case 0:
+                    sousCatList = Enum.GetNames(typeof(INFORMATIQUE_ET_MULTIMEDIA)).ToList();
+                    break;
+                case 1:
+                    sousCatList = Enum.GetNames(typeof(HABILLEMENT_ET_BIEN_ETRE)).ToList();
+                    break;
+                case 2:
+                    sousCatList = Enum.GetNames(typeof(VEHICULES)).ToList();
+                    break;
+                case 3:
+                    sousCatList = Enum.GetNames(typeof(LOISIRS_ET_DIVERTISSEMENT)).ToList();
+                    break;
+                case 4:
+                    sousCatList = Enum.GetNames(typeof(IMMOBILIER)).ToList();
+                    break;
+                default:
+                    sousCatList = Enum.GetNames(typeof(POUR_LA_MAISON_ET_JARDIN)).ToList();
+                    break;
+            }
+            return sousCatList;
+        }
         public async Task<IActionResult> Statitstics(int? id)
         {
             if (id == null)
@@ -177,7 +205,13 @@ namespace Projet_Exam_ASP.NetCore.Controllers
             var offres = _context.Offres.Where(o => o.AppUserId == propriétaire.Id).ToList();
             int Nombrefavoris = 0;
             List<string> clientsId = new List<string>();
-            foreach(Offre offre in offres)
+            List<Tuple<int, int, int>> categorisIndices = new List<Tuple<int, int, int>>();
+            int nombreCatégories = 0;
+            List<string> catégories = new List<string>();
+            List<double> Pourcentages = new List<double>();
+            List<int> NbOffresParMois = new List<int>(new int[12]);
+            NbOffresParMois.Max();
+            foreach (Offre offre in offres)
             {
                 var favoris = _context.Favoris.Where(f => f.OffreId == offre.Id).ToList();
                 Nombrefavoris += favoris.Count();
@@ -188,18 +222,69 @@ namespace Projet_Exam_ASP.NetCore.Controllers
                         clientsId.Add(f.AppUserId);
                     }
                 }
+                if (!categorisIndices.Any(t => t.Item1 == (int)offre.Catégorie && t.Item2 == offre.IndiceSousCatégorie)) 
+                    categorisIndices.Add(new Tuple<int, int,int>((int)offre.Catégorie, offre.IndiceSousCatégorie, 1)) ;
+                else
+                {
+                    int index=categorisIndices.FindIndex(t => t.Item1 == (int)offre.Catégorie && t.Item2 == offre.IndiceSousCatégorie);
+                    categorisIndices[index] = new Tuple<int, int, int>(categorisIndices[index].Item1, categorisIndices[index].Item2, categorisIndices[index].Item3 + 1);
+                }
+                NbOffresParMois[offre.Date_Dépot.Month]++;
             }
+            foreach(var tuple in categorisIndices)
+            {
+                nombreCatégories += tuple.Item3;
+            }
+            foreach(var tuple in categorisIndices)
+            {
+                Pourcentages.Add((double)tuple.Item3/nombreCatégories*100);
+                var souscats = GetsousCategories(tuple.Item1);
+                if (souscats[tuple.Item2] != "Autre" || catégories.Contains(souscats[tuple.Item2]))
+                    catégories.Add(souscats[tuple.Item2]);
+            }
+            Random random = new Random();
+            List<string> colors = new List<string>() { "#00876c", "#439981", "#6aaa96", "#8cbcac", "#aecdc2", "#cfdfd9",
+            "#f1f1f1","#f1d4d4","#f0b8b8","#ec9c9d","#e67f83","#de6069","#d43d51"};
+            List<string> pieChartColors = new List<string>();
+
+            for (int i = 0; i < catégories.Count(); i++)
+            {
+                string r = colors[random.Next(colors.Count())];
+                if (!pieChartColors.Contains(r))
+                    pieChartColors.Add(r);
+                else
+                    i--;
+            }
+            ViewBag.catégories = catégories;
+            ViewBag.Pourcentages = Pourcentages;
+            ViewBag.pieChartColors = pieChartColors;
             ViewBag.Boutique = boutique;
+            ViewBag.NbOffresParMois = NbOffresParMois;
             ViewBag.nombreOffres = offres.Count();
             ViewBag.nombreClients = clientsId.Count();
             ViewBag.nombreFavoris = Nombrefavoris;
             ViewBag.nombrePostDuMois = _context.Offres.Where(o => o.AppUserId == propriétaire.Id && o.Date_Dépot.Month == DateTime.Now.Month).ToList().Count();
-            return View();
+
             
+            return View();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         }
 
         // GET: Boutiques/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -212,7 +297,16 @@ namespace Projet_Exam_ASP.NetCore.Controllers
             {
                 return NotFound();
             }
-            ViewData["ImageId"] = new SelectList(_context.Images, "Id", "Id", boutique.ImageId);
+            ClaimsPrincipal currentUser = this.User;
+            var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var prop = _context.Users.Where(u => u.BoutiqueId == boutique.Id).First();
+            if (currentUserID !=prop.Id)
+            {
+                return NotFound();
+            }
+            ViewBag.nomPropriétaire = prop.Prenom + " " + prop.Nom;
+            ViewBag.image = (_context.Images.Find(boutique.ImageId)).Nom;
+            //ViewData["ImageId"] = new SelectList(_context.Images, "Id", "Id", boutique.ImageId);
             return View(boutique);
         }
 
@@ -221,7 +315,7 @@ namespace Projet_Exam_ASP.NetCore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nom,Description,Telephone,Ville,site,Adresse,ImageId")] Boutique boutique,IFormFile image)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nom,Description,Telephone,Ville,site,Adresse")] Boutique boutique,IFormFile image)
         {
             if (id != boutique.Id)
             {
@@ -230,23 +324,26 @@ namespace Projet_Exam_ASP.NetCore.Controllers
 
             if (ModelState.IsValid)
             {
-                //pour ajouter l'image dans le dossier Images------------
-                string wwwRootPath = _hostEnvironment.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(image.FileName);
-                string fileExtention = Path.GetExtension(image.FileName);
-                fileName = fileName + DateTime.Now.ToString("yymmssfff");
-                string path = Path.Combine(wwwRootPath + "/images/Boutiques" + fileName);
-                using (var fileStream = new FileStream(path, FileMode.Create))
+                if (image != null)
                 {
-                    await image.CopyToAsync(fileStream);
+                    //pour ajouter l'image dans le dossier Images------------
+                    string wwwRootPath = _hostEnvironment.WebRootPath;
+                    string fileName = Path.GetFileNameWithoutExtension(image.FileName);
+                    string fileExtention = Path.GetExtension(image.FileName);
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff");
+                    string path = Path.Combine(wwwRootPath + "/images/Boutiques/" + fileName + fileExtention);
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        await image.CopyToAsync(fileStream);
+                    }
+                    //----------------------------------------------------------
+                    //pour ajouter l'image dans la table image de la base de données--------------
+                    Image img = new Image { Nom = fileName + fileExtention };
+                    _context.Images.Add(img);
+                    await _context.SaveChangesAsync();
+                    //----------------------------------------------------------
+                    boutique.Image = img;
                 }
-                //----------------------------------------------------------
-                //pour ajouter l'image dans la table image de la base de données--------------
-                Image img = new Image { Nom = fileName };
-                _context.Images.Add(img);
-                await _context.SaveChangesAsync();
-                //----------------------------------------------------------
-                boutique.Image=img;
                 try
                 {
                     _context.Update(boutique);
@@ -263,10 +360,10 @@ namespace Projet_Exam_ASP.NetCore.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                
             }
             ViewData["ImageId"] = new SelectList(_context.Images, "Id", "Id", boutique.ImageId);
-            return View(boutique);
+            return RedirectToAction("details", new { id = id });
         }
 
         // GET: Boutiques/Delete/5

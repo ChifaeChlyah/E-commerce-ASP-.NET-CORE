@@ -2,6 +2,7 @@
 <script src="~/lib/bootstrap/dist/js/chart-pie-demo.js"></script>
 <script src="~/lib/bootstrap/dist/js/Chart.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/chart-area-demo.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 @{
     Layout = "_Layout1";
 }
@@ -145,74 +146,65 @@
         </div>
     </div>
 </div>
-
-
-<!-- Pie Chart -->
-<div class="col-xl-4 col-lg-5">
-    <div class="card shadow mb-4">
-        <!-- Card Header - Dropdown -->
-        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-            <div class="dropdown no-arrow">
-                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                     aria-labelledby="dropdownMenuLink">
-                    <div class="dropdown-header">Dropdown Header:</div>
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </div>
-        </div>
-        <!-- Card Body -->
-        <div class="card-body">
-            <div class="chart-pie pt-4 pb-2">
-                <canvas id="myPieChart"></canvas>
-            </div>
-            <div class="mt-4 text-center small">
-                <span class="mr-2">
-                    <i class="fas fa-circle text-primary"></i> Direct
-                </span>
-                <span class="mr-2">
-                    <i class="fas fa-circle text-success"></i> Social
-                </span>
-                <span class="mr-2">
-                    <i class="fas fa-circle text-info"></i> Referral
-                </span>
-            </div>
-        </div>
-    </div>
+<div class="row" style="margin-left: 30px; margin-right: 0px; margin-top: 100px;">
+    <canvas id="myChart" style="width: 700px; max-width: 700px; display: block; height: 350px; margin-right: 50px;"></canvas>
+    <canvas id="myChart2" style="width: 100%; max-width: 600px; display: block; height: auto;"></canvas>
 </div>
-<!-- Area Chart -->
-<div class="col-xl-8 col-lg-7">
-    <div class="card shadow mb-4">
-        <!-- Card Header - Dropdown -->
-        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-            <div class="dropdown no-arrow">
-                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                     aria-labelledby="dropdownMenuLink">
-                    <div class="dropdown-header">Dropdown Header:</div>
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </div>
-        </div>
-        <!-- Card Body -->
-        <div class="card-body">
-            <div class="chart-area">
-                <canvas id="myAreaChart"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
+@{ 
+    List<string> catégories = ViewBag.catégories;
+    List<string> colors = ViewBag.pieChartColors;
+    List<double> Pourcentages = ViewBag.Pourcentages;
+    List<int> NbOffresParMois = ViewBag.NbOffresParMois;
+    int max = NbOffresParMois.Max()+ NbOffresParMois.Max()/4;
+    List<string> Mois = new List<string>() { "Janiver", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Novembre", "Decembre" };
+    }
+<script>
+    var xValues=@Html.Raw(Json.Serialize(catégories)) ;
+    var yValues = @Html.Raw(Json.Serialize(Pourcentages)) ;
+    var barColors = @Html.Raw(Json.Serialize(colors)) ;
+
+    new Chart("myChart", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Pourcentage offres par catégories"
+            }
+        }
+    });
+    var xValues2 = @Html.Raw(Json.Serialize(Mois)) ;
+    var yValues2 = @Html.Raw(Json.Serialize(NbOffresParMois)) ;
+
+    new Chart("myChart2", {
+        type: "line",
+        data: {
+            labels: xValues2,
+            datasets: [{
+                fill: false,
+                lineTension: 0,
+                backgroundColor: "#bd5757",
+                borderColor: "#bd57577d",
+                data: yValues2,
+                label: "Nombres d'offres",
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Nombre d'offres par mois de l'année "+@DateTime.Now.Year ,
+            },
+            
+            
+            scales: {
+                yAxes: [{ ticks: { min: 0, max: @max} }],
+            }
+        }
+    });
+</script>

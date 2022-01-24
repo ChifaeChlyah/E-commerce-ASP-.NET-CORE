@@ -31,12 +31,12 @@ namespace Projet_Exam_ASP.NetCore.Controllers
         public async Task<IActionResult> Index(int? id)
         {
 
-            ClaimsPrincipal currentUser = this.User;
-            var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
-            CurrentUser = _context.Users.Find(currentUserID);
+            
             if (User.Identity.IsAuthenticated)
             {
-                
+                ClaimsPrincipal currentUser = this.User;
+                var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+                CurrentUser = _context.Users.Find(currentUserID);
                 var appDbContext = _context.Offres.Include(o => o.AppUser);
                 List<Boolean> isFavoriList = new List<bool>();
                 

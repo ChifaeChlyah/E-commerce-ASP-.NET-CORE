@@ -13,6 +13,34 @@
 
 <body onload="particulier();">
     <style>
+        .fa-camera {
+            position: absolute;
+            bottom: 47px;
+            right: 469px;
+            font-size: 20px;
+            background: #c9c5c5f0;
+            border-radius: 10px;
+            color: black;
+            width: 30px;
+            height: 30px;
+            padding-top: 4px;
+            padding-left: 1px;
+            cursor: pointer;
+        }
+            .fa-camera:hover {
+                background: #c96b6b;
+            }
+        #linkLRegister:hover {
+            color: #1b1e21;
+            text-decoration: none;
+            background: #fdf1ec;
+        }
+
+        #linkLRegister {
+            background: white;
+            text-decoration: none;
+            
+        }
         .form-control:focus {
             color: #495057;
             background-color: #fff;
@@ -97,16 +125,17 @@
         <div class="row" style="min-height: 605px; height: 640px; box-shadow: 0px 14px 32px 0px rgb(0 0 0 / 58%); border-radius: 10px; ">
             <div class="col-md-3 register-left" style="background: #000000; border-radius: 10px; margin-top: 0px;height:640px">
                 <img src="~/Images/panier.png" />
-                <h3>Welcome</h3>
+                <h3><img src="~/Images/Shopica.png" style="height:60px;width:170px ;margin-top:5px; margin-bottom:0 ;animation:none" /></h3>
                 <p>Shop and Improve your Commerce Activities</p>
-                <input type="submit" name="" value="Login" /><br />
+                <h5 style="margin-bottom: 10px; margin-top: 100px;">Have an account?</h5>
+                <a id="linkLRegister" asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Login </a>
             </div>
 
             <div class="col-md-9 ">
                 <form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
 
 
-                    <div class="nav nav-tabs nav-justified mynavnav" style="background: #ffffff;">
+                    <div class="nav nav-tabs nav-justified mynavnav" >
                         <input type="radio" required asp-for="Input.Status" id="Particulier" value=@StatutPropriétaire.Particulier onchange="particulier()" checked />
                         <div class="nav-item ">
                             <label for="Particulier" style="margin-bottom: 4px; margin-top: 4px;">@StatutPropriétaire.Particulier</label>
@@ -127,7 +156,7 @@
                                 <div class="picture" style="margin-left: 40%; margin-top: 10px; margin-bottom: 20px;">
                                     <img src="~/Images/Profile_Icone_Par_Defaut.png" class="picture-src" id="wizardPicturePreview" title="" style="object-fit: cover; height:100%;">
                                     <input accept="image/*" type="file" id="wizard-picture" class="picture-src valid" name="Input.ImageProfile" aria-invalid="false" style="vertical-align: middle;">
-                                    <i class="fas fa-camera" style=" position: absolute; bottom: 40px; right: 400px; font-size: 35px; color: black;"></i>
+                                    <i class="fas fa-camera" id="camera1" style="pointer-events: none;"></i>
                                 </div>
                                 <h6 class=""></h6>
                             </div>
@@ -135,6 +164,7 @@
                                 <div class="picture" style="margin-left: 40%; margin-top: 10px; margin-bottom: 20px;">
                                     <img src="~/Images/Boutiques/Boutique_Icone_Par_Defaut.png" class="picture-src" id="wizardPicturePreview1" title="" style="object-fit: cover; height:100%;background:white">
                                     <input accept="image/*" type="file" id="wizard-picture1" class="picture-src valid" name="Input.ImageBoutique" aria-invalid="false" style="vertical-align: middle;">
+                                    <i class="fas fa-camera" id="camera2" style="pointer-events: none;"></i>
                                 </div>
                                 <h6 class=""></h6>
                             </div>
@@ -175,8 +205,9 @@
                                         </div>
 
                                         <div class="form-group">
-
-                                            <input asp-for="Input.VilleBoutique" class="form-control" placeholder="Ville" />
+                                            <select asp-for="Input.VilleBoutique" class="form-control" asp-items="@Html.GetEnumSelectList<Ville>()" placeholder="Ville">
+                                                <option selected disabled>--Selectionnez une ville--</option>
+                                            </select>
                                             <span asp-validation-for="Input.VilleBoutique" class="text-danger"></span>
                                         </div>
                                         <div class="form-group">
@@ -186,7 +217,7 @@
                                         </div>
 
                                     </div>
-                                    <input type="button" style="background-color: black;" class="btnRegister" value="Precedent" id="precedentButton" onclick="precedent()" />
+                                    <input type="button"  class="btnRegister" value="Precedent"style="margin-right:205px" id="precedentButton" onclick="precedent()" />
                                 </div>
                                 <div class="col-md-6 ">
                                     <div id="usercol2" class="form-group ">
@@ -209,7 +240,9 @@
                                         </div>
                                         <div class="form-group">
 
-                                            <input asp-for="Input.Ville" class="form-control" placeholder="Ville" />
+                                            <select asp-for="Input.VilleBoutique" class="form-control" asp-items="@Html.GetEnumSelectList<Ville>()" placeholder="Ville">
+                                                <option selected disabled>--Selectionnez une ville--</option>
+                                            </select>
                                             <span asp-validation-for="Input.Ville" class="text-danger"></span>
                                         </div>
                                     </div>
@@ -232,8 +265,8 @@
 
 
                                     </div>
-                                    <input type="submit" style="background-color: black;" class="btnRegister" value="Register" id="registerButton" />
-                                    <input type="button" style="background-color: black;" class="btnRegister" value="Suivant" id="suivantButton" onclick="boutiqueInfo()" />
+                                    <input type="submit"  class="btnRegister" value="Register" id="registerButton" />
+                                    <input type="button"  class="btnRegister" value="Suivant" id="suivantButton" onclick="boutiqueInfo()" />
                                 </div>
 
                             </div>
@@ -407,7 +440,21 @@
             reader1.readAsDataURL(input.files[0]);
         }
     }
-
-
+    $("#wizard-picture").hover(function () {
+        var i = document.getElementById('camera1');
+        i.style.background = "#c96b6b";
+    },
+        function () {
+            var i = document.getElementById('camera1');
+            i.style.background = "#c9c5c5d9";
+        })
+    $("#wizard-picture1").hover(function () {
+        var i = document.getElementById('camera2');
+        i.style.background = "#c96b6b";
+    },
+        function () {
+            var i = document.getElementById('camera2');
+            i.style.background = "#c9c5c5d9";
+        })
 </script>
 
