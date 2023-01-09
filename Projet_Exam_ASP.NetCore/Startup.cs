@@ -112,7 +112,7 @@ namespace Projet_Exam_ASP
                 endpoints.MapRazorPages();      // Identity Athentification
             });
             createIconesParDefautAsync(appdbContext).Wait();
-            createAdminWithRole(provider, appdbContext).Wait();
+            //createAdminWithRole(provider, appdbContext).Wait();
             createOtherRoles(provider).Wait();
 
         }

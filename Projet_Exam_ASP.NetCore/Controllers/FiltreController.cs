@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Projet_Exam_ASP.NetCore.Areas.Identity.Data;
 using Projet_Exam_ASP.NetCore.Data;
 using Projet_Exam_ASP.NetCore.Data.enums;
 using Projet_Exam_ASP.NetCore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Projet_Exam_ASP.NetCore.Controllers
@@ -16,6 +18,8 @@ namespace Projet_Exam_ASP.NetCore.Controllers
         static int? catégorie=null;
         static int? sousCatégorie = null;
         static String searchText = null;
+
+        public AppUser CurrentUser { get; private set; }
 
         public IActionResult Index(string SearchText = "")
         {
@@ -42,8 +46,33 @@ namespace Projet_Exam_ASP.NetCore.Controllers
                 //List<String> sousCatList = GetsousCategories((int)catégorie);
                 //ViewBag.categorie = sousCatList[(int)sousCatégorie - 1];
             }
+            List<Image> images = new List<Image>();
+            List<bool> isFavoriList = new List<bool>();
+            List<int> NbFavorisParOffre = new List<int>();
 
-            //offres = _context.Offres.ToList();
+            offres = _context.Offres.ToList();
+            foreach (Offre o in offres)
+            {
+                if (_context.Images.Where(i => i.OffreId == o.Id).ToList().Count() != 0)
+                    images.Add(_context.Images.Where(i => i.OffreId == o.Id).ToList().First());
+                else
+                    images.Add((new Image { Nom = "Offre_Icone_Par_Defaut.png" }));
+                NbFavorisParOffre.Add(_context.Favoris.Where(f => f.Offre == o).Count());
+                if (User.Identity.IsAuthenticated)
+                {
+                    ClaimsPrincipal currentUser = this.User;
+                    var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+                    CurrentUser = _context.Users.Find(currentUserID);
+                    if (_context.Favoris.Where(f => f.AppUserId == CurrentUser.Id && o.Id == f.OffreId).Count() == 0)
+                        isFavoriList.Add(false);
+                    else
+                        isFavoriList.Add(true);
+                    ViewBag.isFavorisList = isFavoriList;
+                }
+            }
+            
+            ViewBag.NbFavorisParOffre = NbFavorisParOffre;
+            ViewBag.images = images;
             return View(offresFiltrées.ToList());
         }
         public List<String> GetCategories()

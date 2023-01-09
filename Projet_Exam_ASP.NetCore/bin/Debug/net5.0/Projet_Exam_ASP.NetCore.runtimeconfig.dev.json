@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\Chifae\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Chifae\\.nuget\\packages"
+      "C:\\Users\\chifa\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\chifa\\.nuget\\packages"
     ]
   }
 }

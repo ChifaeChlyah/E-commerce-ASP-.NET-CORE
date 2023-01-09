@@ -223,16 +223,7 @@ namespace Projet_Exam_ASP.NetCore.Areas.Identity.Pages.Account.Manage
             }
                 await _userManager.UpdateAsync(user);
                 await _userManager.AddToRoleAsync(user, "user");
-            if (Input.Status == StatutPropriétaire.Particulier)
-            {
-                await _userManager.AddToRoleAsync(user, "Particulier");
-                await _userManager.RemoveFromRoleAsync(user, "Boutique");
-            }
-            else if (Input.Status == StatutPropriétaire.Société)
-            {
-                await _userManager.AddToRoleAsync(user, "Boutique");
-                await _userManager.RemoveFromRoleAsync(user, "Particulier");
-            }
+         
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();

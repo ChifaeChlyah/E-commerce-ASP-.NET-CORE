@@ -216,16 +216,15 @@
         <div class="product-info">
             <div style="display:inline-flex">
                 <div class="product-text">
-                    <h1 style=" margin-right: 38px;">
-                        <input asp-for="Nom" class="form-control" placeholder="Nom boutique" style="font-size: 30px; color: #474747;" />
-                    </h1>
+                    <div style=" margin-right: 38px;">
+                        <h4 style=" width: 242px;">Nom boutique</h4>
+                        <input asp-for="Nom" class="form-control" placeholder="Nom boutique" style="font-size: 30px; color: #474747; margin-left: 38px; margin-right: 38px; width: 245px; }" />
+                    </div>
                     <span asp-validation-for="Nom" class="text-danger"></span>
 
 
-                    <h2 style="color: transparent; margin-top:5px">
-                        Votre boutique
-                    </h2>
-
+                    
+                    <h4 style=" width: 242px; margin-top: 45px;">description boutique</h4>
                     <p><textarea asp-for="Description" class="form-control" placeholder="Description de la boutique" style="height: 125px; font-family: 'Playfair Display', serif; color: #8d8d8d; line-height: 1.7em; font-size: 15px; font-weight: lighter; overflow: hidden; margin-right: 45px; text-align: justify;"></textarea></p>
                     <span asp-validation-for="Description" class="text-danger"></span>
                     <div class="form-group">
@@ -243,7 +242,7 @@
                         <h4>Ville : </h4>
                         <div class="form-group">
                             <h3 style="margin-right: 38px;">
-                                <select id="villes" asp-for="Ville" asp-items="Html.GetEnumSelectList<Ville>()" class="form-control">
+                                <select id="villes" asp-for="Ville" asp-items="Html.GetEnumSelectList<Ville>()" class="form-control" style="padding-right:5px;padding-left:5px">
                                     <option selected disabled>--Selectionnez une ville--</option>
                                 </select></h3>
                             <span asp-validation-for="Ville" class="text-danger"></span>

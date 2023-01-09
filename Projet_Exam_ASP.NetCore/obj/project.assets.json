@@ -7462,19 +7462,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Chifae\\.nuget\\packages\\": {}
+    "C:\\Users\\chifa\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Chifae\\source\\repos\\Projet_Exam_ASP_.NetCore\\Projet_Exam_ASP_.NetCore\\Projet_Exam_ASP_.NetCore\\Projet_Exam_ASP.NetCore\\Projet_Exam_ASP.NetCore.csproj",
+      "projectUniqueName": "C:\\Users\\chifa\\OneDrive\\Documents\\Projet_Exam_ASP_.NetCore\\Projet_Exam_ASP.NetCore\\Projet_Exam_ASP.NetCore.csproj",
       "projectName": "Projet_Exam_ASP.NetCore",
-      "projectPath": "C:\\Users\\Chifae\\source\\repos\\Projet_Exam_ASP_.NetCore\\Projet_Exam_ASP_.NetCore\\Projet_Exam_ASP_.NetCore\\Projet_Exam_ASP.NetCore\\Projet_Exam_ASP.NetCore.csproj",
-      "packagesPath": "C:\\Users\\Chifae\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Chifae\\source\\repos\\Projet_Exam_ASP_.NetCore\\Projet_Exam_ASP_.NetCore\\Projet_Exam_ASP_.NetCore\\Projet_Exam_ASP.NetCore\\obj\\",
+      "projectPath": "C:\\Users\\chifa\\OneDrive\\Documents\\Projet_Exam_ASP_.NetCore\\Projet_Exam_ASP.NetCore\\Projet_Exam_ASP.NetCore.csproj",
+      "packagesPath": "C:\\Users\\chifa\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\chifa\\OneDrive\\Documents\\Projet_Exam_ASP_.NetCore\\Projet_Exam_ASP.NetCore\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Chifae\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\chifa\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7541,7 +7541,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
